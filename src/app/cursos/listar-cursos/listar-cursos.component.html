@@ -1,0 +1,31 @@
+<div class="container-fluid max-width-900">
+
+  <!--  Detalle de un curso -->
+  <div *ngIf="selected" class="row row-cols-1">
+    <div>
+      <app-detalle-curso></app-detalle-curso>
+    </div>
+  </div>
+
+  <!--  Listado de cursos -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Codigo</th>
+      <th scope="col">Programa</th>
+      <th scope="col">Curso</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!--  Este codigo imprime curso por curso del listado de cursos  -->
+    <ng-container *ngFor="let curso of cursos">
+      <tr (click)="onSelected(curso)">
+        <td>{{curso.id}}</td>
+        <td>{{curso.programa}}</td>
+        <td>{{curso.curso}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
