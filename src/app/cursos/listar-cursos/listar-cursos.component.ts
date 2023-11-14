@@ -33,5 +33,6 @@ export class ListarCursosComponent implements OnInit {
   onSelected(curso: Curso) {
      this.cursoSelected = curso;
      this.selected=true;
+     // this.routerPath.navigate(['/cursos/detalle', curso.id]); //Estrategia redireccionando la ruta
   }
 }
