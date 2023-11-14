@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Curso} from "../model/curso";
 import {CursoService} from "../service/curso.service";
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-listar-cursos',
@@ -33,6 +35,44 @@ export class ListarCursosComponent implements OnInit {
   onSelected(curso: Curso) {
      this.cursoSelected = curso;
      this.selected=true;
+
+     Swal.fire('Detalle del curso','<table class="table">\n' +
+       '  <thead>\n' +
+       '  <tr>\n' +
+       '    <th scope="col">Codigo</th>\n' +
+       '    <th scope="col">Programa</th>\n' +
+       '    <th scope="col">Curso</th>\n' +
+       '  </tr>\n' +
+       '  </thead>\n' +
+       '  <tbody>\n' +
+       '    <tr>\n' +
+       '      <td>'+this.cursoSelected.id+'</td>\n' +
+       '      <td>'+this.cursoSelected.programa+'</td>\n' +
+       '      <td>'+this.cursoSelected.curso+'</td>\n' +
+       '    </tr>\n' +
+       '  </tbody>\n' +
+       '</table>','success');
+
      // this.routerPath.navigate(['/cursos/detalle', curso.id]); //Estrategia redireccionando la ruta
+  }
+
+  borrarCurso(curso: Curso) {
+    Swal.fire({
+      title: "Esta seguro?",
+      text: "Usted no puede revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, borra el curso!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Eliminado!",
+          text: "El curso ha sido eliminado.",
+          icon: "success"
+        });
+      }
+    });
   }
 }

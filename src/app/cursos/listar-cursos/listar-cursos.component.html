@@ -14,16 +14,18 @@
       <th scope="col">Codigo</th>
       <th scope="col">Programa</th>
       <th scope="col">Curso</th>
+      <th scope="col">Eliminar</th>
     </tr>
     </thead>
     <tbody>
 
     <!--  Este codigo imprime curso por curso del listado de cursos  -->
     <ng-container *ngFor="let curso of cursos">
-      <tr (click)="onSelected(curso)">
-        <td>{{curso.id}}</td>
-        <td>{{curso.programa}}</td>
-        <td>{{curso.curso}}</td>
+      <tr>
+        <td (click)="onSelected(curso)">{{curso.id}}</td>
+        <td (click)="onSelected(curso)">{{curso.programa}}</td>
+        <td (click)="onSelected(curso)">{{curso.curso}}</td>
+        <td (click)="borrarCurso(curso)"><img src="../../../assets/delete.png"  alt="borrar curso"/></td>
       </tr>
     </ng-container>
     </tbody>
