@@ -8,6 +8,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ListarCursosComponent} from "./cursos/listar-cursos/listar-cursos.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const rutas: Routes =[
   //{path: '', redirectTo: 'listar-cursos', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const rutas: Routes =[
     SweetAlert2Module.forRoot(),
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forRoot(rutas),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { ListarCursosComponent } from './listar-cursos/listar-cursos.component';
 import { CrearCursoComponent } from './crear-curso/crear-curso.component';
 import { DetalleCursoComponent } from './detalle-curso/detalle-curso.component';
 import {CursosRoutingModule} from "./cursos-routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -19,7 +20,8 @@ import {CursosRoutingModule} from "./cursos-routing.module";
   ],
   imports: [
     CommonModule,
-    CursosRoutingModule
+    CursosRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CursosModule { }

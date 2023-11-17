@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Curso} from "../model/curso";
 import {Observable} from "rxjs";
@@ -15,10 +15,17 @@ export class CursoService {
 
   /**
    * Metodo que obtiene los cursos
-   * @returns Observable<Curso[]>
+   * @returns Observable<Curso[]> Lista de cursos
    */
-  getCursos(): Observable<Curso[]>{
+  getCursos(): Observable<Curso[]> {
     return this.httpClient.get<Curso[]>(this.baseUrl);
   }
 
+  /**
+   * Metodo que crea un curso
+   * @param curso Curso a crear
+   */
+  crearCurso(curso: Curso): Observable<Curso> {
+    return this.httpClient.post<Curso>(this.baseUrl, curso);
+  }
 }
