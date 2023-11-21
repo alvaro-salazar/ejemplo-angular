@@ -22,6 +22,13 @@ export class CursoService {
   }
 
   /**
+   * Metodo que obtiene un curso
+   */
+  getCurso(idCurso: number): Observable<Curso> {
+    return this.httpClient.get<Curso>(this.baseUrl + '/' + idCurso);
+  }
+
+  /**
    * Metodo que crea un curso
    * @param curso Curso a crear
    */

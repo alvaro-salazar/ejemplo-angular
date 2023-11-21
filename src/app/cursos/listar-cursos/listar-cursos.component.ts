@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Curso} from "../model/curso";
 import {CursoService} from "../service/curso.service";
 import Swal from "sweetalert2";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ListarCursosComponent implements OnInit {
   public cursoSelected!: Curso;
   public selected: boolean = false;
 
-  constructor(private cursoService: CursoService) {
+  constructor(private cursoService: CursoService, private routerPath: Router, private router: ActivatedRoute) {
       this.cursoService.getCursos().subscribe(
         (cursos: Array<Curso>) => {
           this.cursos = cursos;
@@ -36,24 +37,7 @@ export class ListarCursosComponent implements OnInit {
      this.cursoSelected = curso;
      this.selected=true;
 
-     Swal.fire('Detalle del curso','<table class="table">\n' +
-       '  <thead>\n' +
-       '  <tr>\n' +
-       '    <th scope="col">Codigo</th>\n' +
-       '    <th scope="col">Programa</th>\n' +
-       '    <th scope="col">Curso</th>\n' +
-       '  </tr>\n' +
-       '  </thead>\n' +
-       '  <tbody>\n' +
-       '    <tr>\n' +
-       '      <td>'+this.cursoSelected.id+'</td>\n' +
-       '      <td>'+this.cursoSelected.programa+'</td>\n' +
-       '      <td>'+this.cursoSelected.curso+'</td>\n' +
-       '    </tr>\n' +
-       '  </tbody>\n' +
-       '</table>','success');
-
-     // this.routerPath.navigate(['/cursos/detalle', curso.id]); //Estrategia redireccionando la ruta
+     this.routerPath.navigate(['/editar/'+curso.id]);
   }
 
   borrarCurso(curso: Curso) {

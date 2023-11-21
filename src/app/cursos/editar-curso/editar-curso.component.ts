@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CursoService} from "../service/curso.service";
 import {Curso} from "../model/curso";
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 })
 export class EditarCursoComponent implements OnInit {
   public editarCursoForm!: FormGroup;
+  private curso!: Curso;
 
 
   /**
@@ -20,14 +21,14 @@ export class EditarCursoComponent implements OnInit {
    * @param formBuilder Formulario de creacion de curso
    * @param cursoService Servicio de curso para crear un curso
    */
-  constructor(public router: Router, public formBuilder: FormBuilder, private cursoService: CursoService) {
+  constructor(public router: Router, public formBuilder: FormBuilder, private cursoService: CursoService, private route: ActivatedRoute) {
 
   }
 
   /**
    * Metodo que crea un curso
    */
-  cancelarCrearCurso() {
+  cancelarEditarCurso() {
     this.router.navigate(['/listar']);
   }
 
@@ -48,9 +49,16 @@ export class EditarCursoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.editarCursoForm = this.formBuilder.group({
-      curso: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      programa: ['', Validators.required, Validators.minLength(4)]
+    const idCurso = parseInt(this.route.snapshot.params['id']);
+
+    this.cursoService.getCurso(idCurso).subscribe((curso: Curso) => {
+      this.curso = curso;
+
+      this.editarCursoForm = this.formBuilder.group({
+        curso: [this.curso.curso, [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+        programa: [this.curso.programa, Validators.required, Validators.minLength(4)]
+      });
     });
   }
+
 }

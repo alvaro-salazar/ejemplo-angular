@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ListarCursosComponent} from "./listar-cursos/listar-cursos.component";
 import {CrearCursoComponent} from "./crear-curso/crear-curso.component";
 import {DetalleCursoComponent} from "./detalle-curso/detalle-curso.component";
+import {EditarCursoComponent} from "./editar-curso/editar-curso.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'detalle/:id',
     component: DetalleCursoComponent
+  },
+  {
+    path: 'editar/:id',
+    component: EditarCursoComponent
   }
 ];
 
