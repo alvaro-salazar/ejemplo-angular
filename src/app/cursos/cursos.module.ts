@@ -5,6 +5,7 @@ import { CrearCursoComponent } from './crear-curso/crear-curso.component';
 import { DetalleCursoComponent } from './detalle-curso/detalle-curso.component';
 import {CursosRoutingModule} from "./cursos-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { EditarCursoComponent } from './editar-curso/editar-curso.component';
 
 
 
@@ -14,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ListarCursosComponent,
     CrearCursoComponent,
     DetalleCursoComponent,
+    EditarCursoComponent,
   ],
   exports: [
     ListarCursosComponent

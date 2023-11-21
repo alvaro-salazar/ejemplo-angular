@@ -28,4 +28,12 @@ export class CursoService {
   crearCurso(curso: Curso): Observable<Curso> {
     return this.httpClient.post<Curso>(this.baseUrl, curso);
   }
+
+  /**
+   * Metodo que edita un curso
+   * @param curso Curso a editar
+   */
+  editarCurso(curso: Curso): Observable<Curso> {
+    return this.httpClient.put<Curso>(this.baseUrl, curso);
+  }
 }
