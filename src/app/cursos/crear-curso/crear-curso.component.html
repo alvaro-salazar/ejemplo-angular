@@ -1,30 +1,45 @@
-<form [formGroup]="crearCursoForm" (ngSubmit)="crearCurso(crearCursoForm.value)">
-  <div class="row">
-    <div class="col col-4">
-      <label for="curso">Curso</label>
-      <input id="curso"
-             type="text"
-             name="curso"
-             placeholder="Escriba el nombre del curso aqui"
-             formControlName="curso"
-             class="form-control"
-      >
+<div class="card mx-auto" style="max-width: 500px;">
+  <div class="card-body">
+    <h5 class="card-title">Crear Curso</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Datos del curso</h6>
 
-      <label for="programa">Programa</label>
-      <input id="programa"
-             type="text"
-             name="programa"
-             placeholder="Ingrese el programa al que pertenece"
-             formControlName="programa"
-             class="form-control"
-      >
-    </div>
+    <form [formGroup]="crearCursoForm" (ngSubmit)="crearCurso(crearCursoForm.value)">
+      <div class="row">
+        <div class="col">
 
-    <div class="row">
-      <div class="col col-4">
-        <button type="submit" class="btn btn-primary">Crear curso</button>
-        <button type="button" class="btn btn-danger" (click)="cancelarCrearCurso()">Cancelar</button>
+          <!--   Campo nombre del curso   -->
+          <label for="curso">Curso</label>
+          <input id="curso"
+                 type="text"
+                 name="curso"
+                 placeholder="Escriba el nombre del curso aqui"
+                 formControlName="curso"
+                 class="form-control"
+          >
+
+          <!-- Campo programa del curso -->
+          <label for="programa">Programa</label>
+          <input id="programa"
+                 type="text"
+                 name="programa"
+                 placeholder="Ingrese el programa al que pertenece"
+                 formControlName="programa"
+                 class="form-control"
+          >
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block">Crear curso</button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-danger btn-block" (click)="cancelarCrearCurso()">Cancelar</button>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </form>
   </div>
-</form>
+</div>

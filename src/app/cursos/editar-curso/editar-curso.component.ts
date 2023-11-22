@@ -11,11 +11,15 @@ import Swal from "sweetalert2";
   styleUrls: ['./editar-curso.component.css']
 })
 export class EditarCursoComponent implements OnInit {
+
+  // Creamos e inicializamos el formulario editarCursoForm usando el constructor de FormGroup
   public editarCursoForm: FormGroup= new FormGroup({
     id: new FormControl('',[Validators.required,Validators.minLength(4)]),
     curso: new FormControl('',[Validators.required,Validators.minLength(4)]),
     programa: new FormControl('',[Validators.required,Validators.minLength(4)])
   });
+
+  // Creamos un atributo (relacion) curso que es el que vamos a editar
   public curso!: Curso;
 
 
@@ -31,10 +35,10 @@ export class EditarCursoComponent implements OnInit {
   }
 
   /**
-   * Metodo que crea un curso
+   * Metodo que cancela la edicion de un curso
    */
   cancelarEditarCurso() {
-    this.router.navigate(['/listar']);
+    this.router.navigate(['/listar']); //Redirecciona a la ruta /listar
   }
 
   /**
@@ -42,27 +46,31 @@ export class EditarCursoComponent implements OnInit {
    * @param curso Curso a crear
    */
   editarCurso(curso: Curso) {
-    this.cursoService.editarCurso(curso).subscribe(
+    this.cursoService.editarCurso(curso).subscribe( // Le decimos al servicio que edite el curso
       (curso: Curso) => {
-        console.log(curso);
-        Swal.fire(
+        // console.log(curso);
+        Swal.fire( // Le decimos al usuario que el curso ha sido editado
           'Curso editado',
           `El curso ${curso.curso} ha sido actualizado con exito`,
           'success'
         );
+        this.router.navigate(['/listar']); //Redirecciona a la ruta /listar
       });
   }
 
+  /**
+   * Metodo que se ejecuta al iniciar el componente
+   */
   ngOnInit(): void {
-    const idCurso = parseInt(this.route.snapshot.params['id']);
+    const idCurso = parseInt(this.route.snapshot.params['id']); // Obtenemos el id del curso a editar
 
-    this.cursoService.getCurso(idCurso).subscribe((curso) => {
-      this.curso = curso;
-      console.log(this.curso);
-      this.editarCursoForm = this.formBuilder.group({
-        id: [this.curso.id, []],
-        curso: [this.curso.curso, [Validators.required, Validators.minLength(4)]],
-        programa: [this.curso.programa, [Validators.required, Validators.minLength(4)]]
+    this.cursoService.getCurso(idCurso).subscribe((curso) => { // Le decimos al servicio que nos traiga el curso a editar
+      this.curso = curso; // Obtenemos el curso a editar
+      // console.log(this.curso);
+      this.editarCursoForm = this.formBuilder.group({ // Creamos el formulario editarCursoForm
+        id: [this.curso.id, []], // mostramos el Id del curso. El id no se puede editar
+        curso: [this.curso.curso, [Validators.required, Validators.minLength(4)]], // Mostramos el nombre del curso
+        programa: [this.curso.programa, [Validators.required, Validators.minLength(4)]] // Mostramos el programa del curso
       });
     });
   }

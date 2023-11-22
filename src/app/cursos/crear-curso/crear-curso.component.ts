@@ -40,13 +40,14 @@ export class CrearCursoComponent implements OnInit {
   crearCurso(curso: Curso) {
     this.cursoService.crearCurso(curso).subscribe(
       (curso: Curso) => {
-        console.log(curso);
+        // console.log(curso);
         Swal.fire(
           'Curso creado',
           `El curso ${curso.curso} ha sido creado con exito`,
           'success'
         );
-        this.crearCursoForm.reset();
+        this.crearCursoForm.reset();  //Resetea el formulario
+        this.router.navigate(['/listar']);
       });
   }
 //regexp: regular expression

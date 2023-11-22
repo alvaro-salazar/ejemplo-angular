@@ -7,6 +7,8 @@
     <form [formGroup]="editarCursoForm" (ngSubmit)="editarCurso(editarCursoForm.value)">
       <div class="row">
         <div class="col  ">
+
+          <!--    Campo id de curso      -->
           <label for="id">Id</label>
           <input id="id"
                  type="text"
@@ -14,9 +16,9 @@
                  formControlName="id"
                  class="form-control-plaintext"
                  readonly
-
           >
 
+          <!--    Campo curso (nombre del curso)      -->
           <label for="curso">Nombre</label>
           <input id="curso"
                  type="text"
@@ -26,15 +28,15 @@
                  class="form-control"
           >
 
-
-            <label for="programa">Programa</label>
-            <input id="programa"
-                   type="text"
-                   name="programa"
-                   placeholder="Ingrese el programa al que pertenece"
-                   formControlName="programa"
-                   class="form-control"
-            >
+          <!--    Campo programa del curso      -->
+          <label for="programa">Programa</label>
+          <input id="programa"
+                 type="text"
+                 name="programa"
+                 placeholder="Ingrese el programa al que pertenece"
+                 formControlName="programa"
+                 class="form-control"
+          >
 
           <br>
 
@@ -46,7 +48,6 @@
               <button type="button" class="btn btn-danger btn-block" (click)="cancelarEditarCurso()">Cancelar</button>
             </div>
           </div>
-
 
 
         </div>

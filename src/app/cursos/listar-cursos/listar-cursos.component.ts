@@ -25,6 +25,9 @@ export class ListarCursosComponent implements OnInit {
   }
 
 
+  /**
+   * Metodo que se ejecuta al iniciar el componente
+   */
   ngOnInit(): void {
     // this.cursos[0] = {id: 1, curso: 'Angular', programa: 'Ingenieria de sistemas'};
     // this.cursos[1] = {id: 2, curso: 'Java', programa: 'Ingenieria de sistemas'};
@@ -33,12 +36,21 @@ export class ListarCursosComponent implements OnInit {
     // this.cursos[4] = {id: 5, curso: 'C++', programa: 'Ingenieria de sistemas'};
   }
 
+  /**
+   * Evento que se dispara al seleccionar un curso en la lista
+   * @param curso Curso seleccionado
+   */
   onSelected(curso: Curso) {
      this.cursoSelected = curso;
      this.selected=true;
-     console.log(this.cursoSelected);
-     this.routerPath.navigate(['/editar/' + this.cursoSelected.id]);  }
+     // console.log(this.cursoSelected); //Imprime en la consola del navegador el curso seleccionado
+     this.routerPath.navigate(['/editar/' + this.cursoSelected.id]); //Redirecciona a la ruta /editar/:id
+  }
 
+  /**
+   * Metodo que elimina un curso seleccionado de la lista
+   * @param curso Curso a eliminar
+   */
   borrarCurso(curso: Curso) {
     Swal.fire({
       title: "Esta seguro?",
@@ -50,18 +62,21 @@ export class ListarCursosComponent implements OnInit {
       confirmButtonText: "Si, borra el curso!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.cursoService.borrarCurso(curso.id).subscribe(() => {
+        this.cursoService.borrarCurso(curso.id).subscribe(() => { // Llama al servicio para eliminar el curso
           Swal.fire({
             title: "Eliminado!",
             text: "El curso ha sido eliminado.",
             icon: "success"
           });
-          this.cursos = this.cursos.filter((c) => c !== curso);
+          this.cursos = this.cursos.filter((c) => c !== curso); // Actualiza la lista de cursos en la vista
         });
       }
     });
   }
 
+  /**
+   * Metodo que redirecciona a la ruta /crear
+   */
   crearCurso() {
     this.routerPath.navigate(['/crear']);
   }

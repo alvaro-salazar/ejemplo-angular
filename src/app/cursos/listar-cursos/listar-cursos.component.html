@@ -15,10 +15,10 @@
     <!--  Este codigo imprime curso por curso del listado de cursos  -->
     <ng-container *ngFor="let curso of cursos">
       <tr>
-        <td (click)="onSelected(curso)">{{curso.id}}</td>
-        <td (click)="onSelected(curso)">{{curso.programa}}</td>
-        <td (click)="onSelected(curso)">{{curso.curso}}</td>
-        <td (click)="borrarCurso(curso)"><img src="../../../assets/delete.png"  alt="borrar curso"/></td>
+        <td (click)="onSelected(curso)" class="clickable">{{curso.id}}</td>
+        <td (click)="onSelected(curso)" class="clickable">{{curso.programa}}</td>
+        <td (click)="onSelected(curso)" class="clickable">{{curso.curso}}</td>
+        <td (click)="borrarCurso(curso)" class="clickable"><img src="../../../assets/delete.png"  alt="borrar curso"/></td>
       </tr>
     </ng-container>
     </tbody>
