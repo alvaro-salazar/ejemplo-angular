@@ -1,11 +1,15 @@
 <form [formGroup]="crearCursoForm" (ngSubmit)="crearCurso(crearCursoForm.value)">
   <div class="row">
-    <label for="nombre">Nombre</label>
-    <input id="nombre" type="text" name="nombre" placeholder="Escriba el nombre del curso aqui">
-  </div>
-
-  <div class="row">
     <div class="col col-4">
+      <label for="curso">Curso</label>
+      <input id="curso"
+             type="text"
+             name="curso"
+             placeholder="Escriba el nombre del curso aqui"
+             formControlName="curso"
+             class="form-control"
+      >
+
       <label for="programa">Programa</label>
       <input id="programa"
              type="text"
@@ -15,12 +19,12 @@
              class="form-control"
       >
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col col-4">
-      <button type="submit" class="btn btn-primary">Crear curso</button>
-      <button type="button" class="btn btn-danger" (click)="cancelarCrearCurso()">Cancelar</button>
+    <div class="row">
+      <div class="col col-4">
+        <button type="submit" class="btn btn-primary">Crear curso</button>
+        <button type="button" class="btn btn-danger" (click)="cancelarCrearCurso()">Cancelar</button>
+      </div>
     </div>
   </div>
 </form>

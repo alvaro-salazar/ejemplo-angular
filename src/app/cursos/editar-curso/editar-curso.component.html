@@ -1,43 +1,58 @@
-<form [formGroup]="editarCursoForm" (ngSubmit)="editarCurso(editarCursoForm.value)">
-  <div class="row">
-    <label for="id">Id</label>
-    <input id="id"
-           type="text"
-           name="id"
-           formControlName="id"
-           class="form-control"
-           readonly
-    >
-  </div>
+<div class="card mx-auto" style="max-width: 500px;">
+  <div class="card-body">
+    <h5 class="card-title">Editar curso {{editarCursoForm.get('curso')?.value}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Datos del curso</h6>
 
-  <div class="row">
-    <label for="nombre">Nombre</label>
-    <input id="nombre"
-           type="text"
-           name="nombre"
-           placeholder="Escriba el nombre del curso aqui"
-           formControlName="nombre"
-           class="form-control"
-    >
-  </div>
 
-  <div class="row">
-    <div class="col col-4">
-      <label for="programa">Programa</label>
-      <input id="programa"
-             type="text"
-             name="programa"
-             placeholder="Ingrese el programa al que pertenece"
-             formControlName="programa"
-             class="form-control"
-      >
-    </div>
-  </div>
+    <form [formGroup]="editarCursoForm" (ngSubmit)="editarCurso(editarCursoForm.value)">
+      <div class="row">
+        <div class="col  ">
+          <label for="id">Id</label>
+          <input id="id"
+                 type="text"
+                 name="id"
+                 formControlName="id"
+                 class="form-control-plaintext"
+                 readonly
 
-  <div class="row">
-    <div class="col col-4">
-      <button type="submit" class="btn btn-primary">Editar curso</button>
-      <button type="button" class="btn btn-danger" (click)="cancelarEditarCurso()">Cancelar</button>
-    </div>
+          >
+
+          <label for="curso">Nombre</label>
+          <input id="curso"
+                 type="text"
+                 name="curso"
+                 placeholder="Escriba el nombre del curso aqui"
+                 formControlName="curso"
+                 class="form-control"
+          >
+
+
+            <label for="programa">Programa</label>
+            <input id="programa"
+                   type="text"
+                   name="programa"
+                   placeholder="Ingrese el programa al que pertenece"
+                   formControlName="programa"
+                   class="form-control"
+            >
+
+          <br>
+
+          <div class="row justify-content-center mt-3">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary btn-block">Editar curso</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-danger btn-block" (click)="cancelarEditarCurso()">Cancelar</button>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </form>
+
+
   </div>
-</form>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Curso} from "../model/curso";
 import {CursoService} from "../service/curso.service";
 import Swal from "sweetalert2";
@@ -11,8 +11,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./crear-curso.component.css']
 })
 export class CrearCursoComponent implements OnInit {
-  public crearCursoForm!: FormGroup;
-
+  public crearCursoForm: FormGroup= new FormGroup({
+    curso: new FormControl('',[Validators.required,Validators.minLength(4)]),
+    programa: new FormControl('',[Validators.required,Validators.minLength(4)])
+  });
 
   /**
    * Constructor del componente
@@ -51,7 +53,7 @@ export class CrearCursoComponent implements OnInit {
   ngOnInit(): void {
     this.crearCursoForm = this.formBuilder.group({
       curso: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      programa: ['', Validators.required, Validators.minLength(4)]
+      programa: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 }

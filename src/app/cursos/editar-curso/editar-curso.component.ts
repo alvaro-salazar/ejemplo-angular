@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CursoService} from "../service/curso.service";
 import {Curso} from "../model/curso";
@@ -11,8 +11,12 @@ import Swal from "sweetalert2";
   styleUrls: ['./editar-curso.component.css']
 })
 export class EditarCursoComponent implements OnInit {
-  public editarCursoForm!: FormGroup;
-  private curso!: Curso;
+  public editarCursoForm: FormGroup= new FormGroup({
+    id: new FormControl('',[Validators.required,Validators.minLength(4)]),
+    curso: new FormControl('',[Validators.required,Validators.minLength(4)]),
+    programa: new FormControl('',[Validators.required,Validators.minLength(4)])
+  });
+  public curso!: Curso;
 
 
   /**
@@ -20,6 +24,7 @@ export class EditarCursoComponent implements OnInit {
    * @param router Router de la aplicacion
    * @param formBuilder Formulario de creacion de curso
    * @param cursoService Servicio de curso para crear un curso
+   * @param route Ruta del componente
    */
   constructor(public router: Router, public formBuilder: FormBuilder, private cursoService: CursoService, private route: ActivatedRoute) {
 
@@ -41,7 +46,7 @@ export class EditarCursoComponent implements OnInit {
       (curso: Curso) => {
         console.log(curso);
         Swal.fire(
-          'Curso creado',
+          'Curso editado',
           `El curso ${curso.curso} ha sido actualizado con exito`,
           'success'
         );
@@ -51,12 +56,13 @@ export class EditarCursoComponent implements OnInit {
   ngOnInit(): void {
     const idCurso = parseInt(this.route.snapshot.params['id']);
 
-    this.cursoService.getCurso(idCurso).subscribe((curso: Curso) => {
+    this.cursoService.getCurso(idCurso).subscribe((curso) => {
       this.curso = curso;
-
+      console.log(this.curso);
       this.editarCursoForm = this.formBuilder.group({
-        curso: [this.curso.curso, [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-        programa: [this.curso.programa, Validators.required, Validators.minLength(4)]
+        id: [this.curso.id, []],
+        curso: [this.curso.curso, [Validators.required, Validators.minLength(4)]],
+        programa: [this.curso.programa, [Validators.required, Validators.minLength(4)]]
       });
     });
   }

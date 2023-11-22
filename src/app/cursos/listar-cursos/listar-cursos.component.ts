@@ -36,9 +36,8 @@ export class ListarCursosComponent implements OnInit {
   onSelected(curso: Curso) {
      this.cursoSelected = curso;
      this.selected=true;
-
-     this.routerPath.navigate(['/editar/'+curso.id]);
-  }
+     console.log(this.cursoSelected);
+     this.routerPath.navigate(['/editar/' + this.cursoSelected.id]);  }
 
   borrarCurso(curso: Curso) {
     Swal.fire({
@@ -51,12 +50,19 @@ export class ListarCursosComponent implements OnInit {
       confirmButtonText: "Si, borra el curso!"
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Eliminado!",
-          text: "El curso ha sido eliminado.",
-          icon: "success"
+        this.cursoService.borrarCurso(curso.id).subscribe(() => {
+          Swal.fire({
+            title: "Eliminado!",
+            text: "El curso ha sido eliminado.",
+            icon: "success"
+          });
+          this.cursos = this.cursos.filter((c) => c !== curso);
         });
       }
     });
+  }
+
+  crearCurso() {
+    this.routerPath.navigate(['/crear']);
   }
 }
