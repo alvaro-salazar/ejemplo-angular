@@ -7,7 +7,7 @@ import {map, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class CursoService {
-  private baseUrl: string = "http://localhost:8080"; //TODO: Agregar url del servicio
+  private baseUrl: string = "http://test.denkitronik.com"; //TODO: Agregar url del servicio
 
   constructor(private httpClient: HttpClient) {
 
